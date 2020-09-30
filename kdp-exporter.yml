@@ -1,0 +1,21 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  kdp-exporter:
+    lang: python3-debian
+    handler: ./kdp-exporter
+    image: sergeykudrenko/faas-kdp-exporter:1.0.2
+    environment:
+        read_timeout: 20s
+        write_timeout: 20s
+        write_debug: false
+        combine_output: false        
+    limits:
+      cpu: 200m
+      memory: 250Mi
+    requests:
+      cpu: 100m
+      memory: 100Mi
+
